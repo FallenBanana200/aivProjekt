@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>MSE</title>
+</h:head>
+
+<h:body>
+    <f:view>
+
+        <f:metadata>
+            <f:viewParam name="lastnikId" value="#{demo2.lastnikId}" />
+        </f:metadata>
+
+        <h:form>
+
+            [
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/all.xhtml">Vsi lastniki</a> |
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/prikazSkupnosti.xhtml">Vse skupnosti</a> |
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/mse.xhtml">Vse MSE</a>
+            ]
+            <hr />
+
+            <h:dataTable value="#{demo.getAllMSE(demo2.lastnikId)}" var="mse">
+                <h:column>
+                    <h:link value="#{mse.naziv}" outcome="details">
+                        <f:param name="id" value="#{mse.id}" />
+                    </h:link>
+                </h:column>
+                <h:column>#{mse.longitude}</h:column>
+                <h:column>#{mse.latitude}</h:column>
+                <h:column>#{mse.zmogljivostMSE}</h:column>
+                <h:column>
+                    <h:link value="Edit" outcome="mse">
+                        <f:param name="id" value="#{mse.id}" />
+                    </h:link> |
+                    <h:commandLink value="Delete" actionListener="#{demo2.deleteMSE(mse)}" />
+                </h:column>
+                <h:column><p:commandButton action="#{demo2.preveriServise(mse)}" styleClass="ui-button-flat" icon="pi pi-times"/></h:column>
+
+            </h:dataTable>
+
+        </h:form>
+
+    </f:view>
+</h:body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Dodaj skupnost</title>
+</h:head>
+
+<h:body>
+    <f:view>
+        <h:form>
+
+            [ <a href="#{facesContext.externalContext.applicationContextPath}/faces/all.xhtml">Vsi uporabniki</a> |
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/edit.xhtml?">Dodaj uporabnika</a> ]
+            <a href="#{facesContext.externalContext.applicationContextPath}/faces/prikazSkupnosti.xhtml?">Seznam skupnosti</a> ]
+            <hr />
+
+            <f:metadata>
+                <f:viewParam name="id" value="#{skupnost.skupnostId}" />
+            </f:metadata>
+
+            Naziv: <h:inputText id="n_naziv" value="#{skupnost.selectedSkupnost.naziv}"  /><br/>
+            Skrbnik:
+            <p:selectCheckboxMenu
+                    id="menu"
+                    value="#{skupnost.izbraniSkrbnik}"
+                    lazy="false"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    label="Skrbnik"
+                    style="width: 15rem" panelStyle="width: 15rem" scrollHeight="100">
+                <f:selectItems value="#{demo.getAllLastniki()}" var="osebaVar" itemLabel="#{osebaVar.ime} #{osebaVar.priimek}" itemValue="#{osebaVar.id}"/>
+            </p:selectCheckboxMenu>
+
+            Clani:
+            <p:selectCheckboxMenu
+                    id="check"
+                    value="#{skupnost.izbraniClani}"
+                    lazy="false"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    label="Clani"
+                    style="width: 15rem" panelStyle="width: 15rem" scrollHeight="100">
+                <f:selectItems value="#{demo.getAllLastniki()}" var="osebaVar" itemLabel="#{osebaVar.ime} #{osebaVar.priimek}" itemValue="#{osebaVar.id}"/>
+            </p:selectCheckboxMenu>
+            <br/><br/>
+            <h:commandButton value="Save" action="#{skupnost.saveSkupnost}"/>
+
+        </h:form>
+    </f:view>
+</h:body>
+
+</html>

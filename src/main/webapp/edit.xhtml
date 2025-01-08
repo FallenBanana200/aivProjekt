@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Preuredi lastnika</title>
+</h:head>
+
+<h:body>
+<f:view>
+<h:form>
+
+	[
+	<a href="#{facesContext.externalContext.applicationContextPath}/faces/all.xhtml">Vsi lastniki</a> |
+	<a href="#{facesContext.externalContext.applicationContextPath}/faces/prikazSkupnosti.xhtml">Vse skupnosti</a> |
+	<a href="#{facesContext.externalContext.applicationContextPath}/faces/mse.xhtml">Vse MSE</a>
+	]
+	<hr />
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{demo.lastnikId}" />
+	</f:metadata>
+	
+	Ime: <h:inputText id="n_ime" value="#{demo.selectedLastnik.ime}"/><br/>
+	Priimek: <h:inputText id="n_priimek" value="#{demo.selectedLastnik.priimek}"/><br/>
+	Tip: <h:inputText id="n_tip" value="#{demo.selectedLastnik.tip}"/><br/>
+	Naslov: <h:inputText id="n_naslov" value="#{demo.selectedLastnik.naslov}"/><br/>
+	E-mail: <h:inputText id="n_email" value="#{demo.selectedLastnik.email}" validatorMessage="Insert valid e-mail">
+				<f:validateRequired />
+			</h:inputText> * <h:message for="n_email" style="color:red" />
+	<br/><br/>
+	<h:commandButton value="Save" action="#{demo.saveLastnik()}"/>
+	
+</h:form>
+</f:view>
+</h:body>
+
+</html>
+
+
+
+				
+					

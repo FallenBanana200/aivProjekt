@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+   <meta charset="UTF-8" />
+   <title>Keep It Simple &amp; Stupid</title>
+</h:head>
+
+<h:body>
+   <f:view>
+      <h:form>
+
+         [ <a href="#{facesContext.externalContext.applicationContextPath}/faces/all.xhtml">All</a> |
+         <a href="#{facesContext.externalContext.applicationContextPath}/faces/edit.xhtml?email=NULL">Add new</a> ]
+         <hr />
+
+         <f:metadata>
+            <f:viewParam name="id" value="#{demo2.lastnikId}" />
+         </f:metadata>
+
+         Naziv: <h:inputText id="n_naziv" value="#{demo2.selectedMSE.naziv}"/><br/>
+         Latitude: <h:inputText id="n_latitude" value="#{demo2.selectedMSE.latitude}"/><br/>
+         Longitude: <h:inputText id="n_longitude" value="#{demo2.selectedMSE.longitude}"/><br/>
+         Moč v kW: <h:inputText id="n_moc" value="#{demo2.selectedMSE.zmogljivostMSE}"/><br/>
+         <!-- Datum vgradnje -->
+         <span class="ui-float-label col-12" style="display: initial">
+                <p:datePicker id="mse_datum_vgradnje" value="#{demo2.selectedMSE.datumVgradnje}" />
+                <p:outputLabel value="Datum vgradnje"/>
+            </span>
+
+         <!-- Datum zadnjega pregleda -->
+         <span class="ui-float-label col-12" style="display: initial">
+                <p:datePicker id="mse_datum_zadnjega_pregleda" value="#{demo2.selectedMSE.zadnjiPregled}" />
+                <p:outputLabel value="Datum zadnjega pregleda"/>
+            </span>
+
+         <!-- Datum vzdrzevalnega servisa -->
+         <span class="ui-float-label col-12" style="display: initial">
+                <p:datePicker id="mse_datum_vzdrzevalnega_servisa" value="#{demo2.selectedMSE.zadnjiServis}" />
+                <p:outputLabel value="Datum vzdrzevalnega servisa"/>
+            </span>
+         <br/><br/>
+         <h:commandButton value="Save" action="#{demo2.saveMSE(demo2.selectedMSE, demo.selectedLastnik)}">
+            <f:param name="mse" value="#{demo2.selectedMSE}" />
+            <f:param name="id" value="#{demo.selectedLastnik.id}" />
+         </h:commandButton>
+
+      </h:form>
+   </f:view>
+</h:body>
+
+</html>
