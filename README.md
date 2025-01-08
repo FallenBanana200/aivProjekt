@@ -1,4 +1,4 @@
-##Java project##
+##Java project
 
 -Using JSF for frontend
 -sql database and 
